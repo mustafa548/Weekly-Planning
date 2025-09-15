@@ -418,6 +418,8 @@ function PlayWhenUpdateTasks()
     UpdateCertainTaskInArray();
 
     inputDays.style.display = "grid";
+    lastCase.children[1].querySelector(".delete").style.pointerEvents = "auto";
+    lastCase.children[1].querySelector(".drag").style.pointerEvents = "auto";
 
     addButton.innerHTML = "Add Task";
     addButton.dataset.process = "add";
@@ -468,7 +470,8 @@ document.addEventListener("click", (event) => {
 
         // Hide The InputDays Section
         inputDays.style.display = "none";
-
+        event.target.parentElement.querySelector(".delete").style.pointerEvents = "none";
+        event.target.parentElement.querySelector(".drag").style.pointerEvents = "none";
 
         addButton.innerHTML = "Update"; // Change The Btn Text To Update
 
@@ -712,8 +715,8 @@ deleteAllTasksButton.onclick = function (event) {
             week.forEach((day) => day.tasks = []);
 
             days.forEach((day) => {
-                day.children[1].classList.remove("active");
-                day.style.maxHeight = "70px";
+                if (day.classList.contains("opened"))
+                    day.children[1].click();
             });
 
             ShowProgressBar();
