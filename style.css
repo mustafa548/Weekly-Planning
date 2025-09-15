@@ -284,6 +284,7 @@ body {
     pointer-events: none;
     opacity: 0;
     transition-duration: .3s;
+    z-index: 1;
 }
 
 .content section.showTasks .day .tasks .task .process span.drag .tooltip {
